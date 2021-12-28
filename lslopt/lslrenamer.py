@@ -24,7 +24,7 @@
 #
 # A side effect of this change is that the script becomes unreadable gibberish.
 
-from strutil import xrange
+from lslopt.strutil import xrange
 
 class renamer(object):
     CharSet1 = '_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'

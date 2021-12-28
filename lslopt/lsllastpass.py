@@ -25,7 +25,7 @@ from lslopt.lslcommon import nr
 #import math
 #from lslparse import warning
 #from lslfuncopt import OptimizeFunc, OptimizeArgs, FuncOptSetup
-from strutil import xrange
+from lslopt.strutil import xrange
 
 class rec:
     def __init__(self, **init):

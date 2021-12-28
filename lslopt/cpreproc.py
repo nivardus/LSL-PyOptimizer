@@ -18,12 +18,7 @@
 # Interface for Niall Douglas' and David M. Beazley's PCPP (a C preprocessor)
 
 import sys, os
-
-oldsyspath = sys.path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                'pcpp'))
 from pcpp import preprocessor, OutputDirective, Action
-path = oldsyspath
 
 DIRECTIVES_PASSED_THROUGH = {'warning', 'pragma', 'line'}
 

@@ -18,7 +18,6 @@
 # Optimizer class that wraps and calls the other parts.
 
 from lslopt import lslfuncs
-
 from lslopt.lslcommon import nr
 from lslopt.lslfoldconst import foldconst
 from lslopt.lslrenamer import renamer

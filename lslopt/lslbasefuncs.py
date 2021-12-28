@@ -41,8 +41,7 @@ from ctypes import c_float
 import math
 import hashlib
 from base64 import b64encode, b64decode
-from strutil import *
-
+from lslopt.strutil import *
 
 # Regular expressions used along the code. They are needed mainly because
 # Python lacks a C-like strtod/strtol (it comes close, but it is very picky

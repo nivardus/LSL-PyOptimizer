@@ -21,7 +21,7 @@ from lslopt import lslfuncs
 from lslopt import lslcommon
 from lslopt.lslcommon import Key, Vector, Quaternion, warning
 from math import copysign
-from strutil import *
+from lslopt.strutil import *
 
 debugScopes = False
 

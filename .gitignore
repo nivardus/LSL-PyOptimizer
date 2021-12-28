@@ -1,6 +1,7 @@
 *~
 *-
 *.py[co]
+*.egg-info/
 /overwritten.lsl
 calcmain.py
 /unit_tests/coverage.suite/outfile.tmp

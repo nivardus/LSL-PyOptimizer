@@ -31,7 +31,7 @@ from lslopt.lsloptimizer import optimizer
 import sys, os, getopt, re
 import lslopt.lslcommon
 import lslopt.lslloadlib
-from strutil import *
+from lslopt.strutil import *
 
 
 VERSION = '0.3.0beta'
@@ -387,12 +387,11 @@ validoptions = frozenset({'extendedglobalexpr','breakcont','extendedtypecast',
     # 'prettify' is internal, as it's a user flag
 })
 
-def main(argv):
+def main(argv=None):
     """Main executable."""
 
-    # If it's good to append the basename to it, it's good to append the
-    # auxiliary files' names to it, which should be located where this file is.
-    lslopt.lslcommon.DataPath = __file__[:-len(os.path.basename(__file__))]
+    if argv is None:
+        argv = sys.argv
 
     # Default options
     options = set(('extendedglobalexpr','extendedtypecast','extendedassignment',
@@ -476,9 +475,13 @@ def main(argv):
 
         elif opt in ('-b', '--builtins'):
             builtins = arg
+            if not os.path.abspath(builtins):
+                builtins = os.path.join(os.getcwd(), builtins)
 
         elif opt in ('-L', '--libdata'):
             libdata = arg
+            if not os.path.abspath(libdata):
+                libdata = os.path.join(os.getcwd(), libdata)
 
         elif opt in ('-y', '--python-exceptions'):
             raise_exception = True
@@ -759,6 +762,6 @@ def main(argv):
         return 1
 
 if __name__ == '__main__':
-    ret = main(sys.argv)
+    ret = main()
     if ret:
         sys.exit(ret)

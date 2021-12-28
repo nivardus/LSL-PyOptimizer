@@ -19,7 +19,7 @@
 
 from lslopt import lslfuncs
 from lslopt.lslcommon import nr
-from strutil import xrange
+from lslopt.strutil import xrange
 
 class deadcode(object):
 

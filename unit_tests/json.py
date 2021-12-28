@@ -1,4 +1,4 @@
-from strutil import *
+from lslopt.strutil import *
 from lslopt.lslfuncs import *
 
 tests = 0

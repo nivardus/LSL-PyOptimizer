@@ -1,4 +1,0 @@
-[submodule "pcpp"]
-	path = pcpp
-	url = https://github.com/ned14/pcpp
-	ignore = dirty

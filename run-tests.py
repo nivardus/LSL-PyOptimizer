@@ -28,7 +28,7 @@
 #    input to the program.
 # .run defines the command-line parameters for invocation. A test can be run
 #    without a .lsl file but with a .run file. If not present, the .lsl file
-#    is run with the command line 'main.py -'. The quoting rules are sh-style.
+#    is run with the command line 'lslopt/cli.py -'. The quoting rules are sh-style.
 #    The executable name is ignored, but needs to be present.
 # .out is for expected output to stdout. If the first line is "REGEX", then
 #    the rest of the file is interpreted as a regular expression that the
@@ -49,7 +49,8 @@ import unittest
 import sys
 import os
 #import math
-import main
+from lslopt import cli
+from lslopt.strutil import *
 import glob
 import re
 try:
@@ -62,7 +63,6 @@ else:
     from io import BytesIO as StringStream
 from lslopt import lslcommon,lslfuncs,lslparse,lsloutput,lslloadlib
 from lslopt.lslcommon import nr
-from strutil import *
 
 class EArgError(Exception):
     pass
@@ -207,7 +207,7 @@ class StrUTF8IO(StringStream):
         StringStream.write(self, any2b(s))
 
 def invokeMain(argv, stdin = None):
-    """Invoke main.main, substituting stdin, stdout, stderr.
+    """Invoke cli.main, substituting stdin, stdout, stderr.
     Returns tuple with stdout and stderr."""
     # Revert globals to initial state
     lslcommon.LSO = False
@@ -227,7 +227,7 @@ def invokeMain(argv, stdin = None):
         sys.stdout.encoding = 'utf8'
         sys.stderr.encoding = 'utf8'
 
-        main.main(argv)
+        cli.main(argv)
 
         stdout_output = sys.stdout.getvalue()
         stderr_output = sys.stderr.getvalue()
@@ -739,8 +739,8 @@ def generateScriptTests():
                     expected_stdout = tryRead(fbase + '.out') or b''
                     expected_stderr = tryRead(fbase + '.err') or b''
                     runargs = (parseArgs(tryRead(fbase + '.run', Binary=False))
-                               or (['main.py', '-y', '-'] if suite != 'Expr'
-                                   else ['main.py',
+                               or (['lslopt/cli.py', '-y', '-'] if suite != 'Expr'
+                                   else ['lslopt/cli.py',
                                          # Defaults for Expr:
                                          '-O', 'clear,optimize,constfold'
                                                ',addstrings,foldtabs,expr',

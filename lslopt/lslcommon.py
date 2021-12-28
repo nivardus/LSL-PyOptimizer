@@ -18,7 +18,8 @@
 # Classes, functions and variables for use of all modules.
 
 import sys
-from strutil import *
+from os import path
+from lslopt.strutil import *
 strutil_used
 
 _exclusions = frozenset({'nt','t','name','value','ch', 'X','SEF'})
@@ -96,7 +97,8 @@ LSO = False
 # Set to True by lslcalc's main
 IsCalc = False
 
-DataPath = ''
+# Default directory containing builtins.txt and fndata.txt
+DataPath = path.dirname(path.dirname(path.abspath(__file__)))
 
 # Language
 
