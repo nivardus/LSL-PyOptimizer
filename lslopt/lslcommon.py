@@ -18,6 +18,7 @@
 # Classes, functions and variables for use of all modules.
 
 import sys
+from os import path
 from strutil import *
 strutil_used
 
@@ -96,7 +97,8 @@ LSO = False
 # Set to True by lslcalc's main
 IsCalc = False
 
-DataPath = ''
+# Default directory containing builtins.txt and fndata.txt
+DataPath = path.join(path.dirname(path.abspath(__file__)), 'data')
 
 # Language
 

@@ -49,7 +49,7 @@ import unittest
 import sys
 import os
 #import math
-import main
+from lslopt import cmd
 import glob
 import re
 try:
@@ -227,7 +227,7 @@ def invokeMain(argv, stdin = None):
         sys.stdout.encoding = 'utf8'
         sys.stderr.encoding = 'utf8'
 
-        main.main(argv)
+        cmd.main(argv)
 
         stdout_output = sys.stdout.getvalue()
         stderr_output = sys.stderr.getvalue()

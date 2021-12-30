@@ -18,6 +18,7 @@
 # Load the builtins and function properties.
 
 import sys, re
+from os import path
 from lslopt.lslcommon import types, warning, Vector, Quaternion
 from lslopt import lslcommon, lslfuncs
 from strutil import *
@@ -28,10 +29,10 @@ def LoadLibrary(builtins = None, fndata = None):
     """
 
     if builtins is None:
-        builtins = lslcommon.DataPath + 'builtins.txt'
+        builtins = path.join(lslcommon.DataPath, 'builtins.txt')
 
     if fndata is None:
-        fndata = lslcommon.DataPath + 'fndata.txt'
+        fndata = path.join(lslcommon.DataPath, 'fndata.txt')
 
     events = {}
     constants = {}

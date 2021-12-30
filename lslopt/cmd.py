@@ -1,5 +1,3 @@
-#!/usr/bin/env python2
-#
 #    (C) Copyright 2015-2021 Sei Lisa. All rights reserved.
 #
 #    This file is part of LSL PyOptimizer.
@@ -387,12 +385,11 @@ validoptions = frozenset({'extendedglobalexpr','breakcont','extendedtypecast',
     # 'prettify' is internal, as it's a user flag
 })
 
-def main(argv):
+def main(argv=None):
     """Main executable."""
 
-    # If it's good to append the basename to it, it's good to append the
-    # auxiliary files' names to it, which should be located where this file is.
-    lslopt.lslcommon.DataPath = __file__[:-len(os.path.basename(__file__))]
+    if argv is None:
+        argv = sys.argv
 
     # Default options
     options = set(('extendedglobalexpr','extendedtypecast','extendedassignment',
@@ -476,9 +473,13 @@ def main(argv):
 
         elif opt in ('-b', '--builtins'):
             builtins = arg
+            if not os.path.abspath(builtins):
+                builtins = os.path.join(os.getcwd(), builtins)
 
         elif opt in ('-L', '--libdata'):
             libdata = arg
+            if not os.path.abspath(libdata):
+                libdata = os.path.join(os.getcwd(), libdata) 
 
         elif opt in ('-y', '--python-exceptions'):
             raise_exception = True
@@ -757,8 +758,3 @@ def main(argv):
             raise
         werr(e.__class__.__name__ + u': ' + str(e) + u'\n')
         return 1
-
-if __name__ == '__main__':
-    ret = main(sys.argv)
-    if ret:
-        sys.exit(ret)
